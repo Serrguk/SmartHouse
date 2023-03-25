@@ -1,6 +1,6 @@
 import Interfaces.ElectricDevice;
 
-public abstract class LightingDevice implements ElectricDevice {
+public abstract class LightingDevice implements ElectricDevice, Comparable <LightingDevice>{
     public static final double MAX_BRIGHTNESS = 1D;
     public static final double MIN_BRIGHTNESS = 0D;
 
@@ -37,9 +37,23 @@ public abstract class LightingDevice implements ElectricDevice {
         return brightness;
     }
 
+    public int getPower() {
+        return power;
+    }
+
     public void changeBrightness(double rate) {
         double changed = brightness + brightness * rate;
         setBrightness(changed);
+    }
+
+    @Override
+    public int compareTo(LightingDevice o) {
+        return Integer.compare(power, ((LightingDevice) o).power);
+    }
+
+    @Override
+    public String toString() {
+        return getClass().getName() + " with power " + power;
     }
 }
 

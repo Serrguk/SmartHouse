@@ -4,6 +4,7 @@ public class Chandelier extends LightingDevice {
 
     private final int lampCount;
 
+
     public Chandelier(int power, int lampCount) {
         super(power);
         this.lampCount = lampCount;
@@ -14,7 +15,19 @@ public class Chandelier extends LightingDevice {
         double step = 1.0 / (lampCount * LAMP_BRIGHTNESS_STEPS);
         int stepsCount = (int) Math.round(level / step);
         super.setBrightness(stepsCount * step);
+        class Controller {
+            public Controller() {
+                //connect
+            }
+            public void reset() {
+                //some logic
+            }
+        }
 
+        if (brightness == 0) {
+            Controller controller = new Controller();
+            controller.reset();
+        }
     }
 
     @Override
